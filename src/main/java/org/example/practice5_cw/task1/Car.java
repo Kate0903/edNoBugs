@@ -1,4 +1,4 @@
-package practice5_cw.task1;
+package org.example.practice5_cw.task1;
 
 public class Car extends Transport {
   public Car(){

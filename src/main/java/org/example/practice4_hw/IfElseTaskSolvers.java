@@ -17,10 +17,10 @@ public class IfElseTaskSolvers {
     //System.out.println(checkParity());
 
     //проверка метода определения скидки по возрасту
-    //System.out.println("Размер скидки для указанного вами возраста: " + checkDiscount() +"%");
+    System.out.println("Размер скидки для указанного вами возраста: " + checkDiscount() +"%");
 
     //проверка метода оценки результат теста по баллам
-    System.out.println(checkEstimateTest());
+    //System.out.println(checkEstimateTest());
   }
 
 
@@ -83,7 +83,7 @@ public class IfElseTaskSolvers {
     String parity;
     System.out.println("Введите число: ");
     int number = scanner.nextInt();
-    parity = (number%2 == 0) ? "Число четное" : "Число нечетное";
+    parity = (number % 2 == 0) ? "Число четное" : "Число нечетное";
     return parity;
   }
 
@@ -93,6 +93,9 @@ public class IfElseTaskSolvers {
     int age;
     System.out.println("Введите возраст для определения скидки: ");
     age = scanner.nextInt();
+    if(age < 1){
+      System.out.println("Возраст указан неверно.");
+    }
     if(age >= 1 && age < 18){
       discount = 25;
     } else if(age >= 65){

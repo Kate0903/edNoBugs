@@ -13,10 +13,10 @@ public class ForTaskSolvers {
     //multiply();
 
     //проверка метода определения простого числа
-    //System.out.println(simpleNumber());
+    System.out.println(simpleNumber());
 
     //проверка метода вывода чисел от 1 до 10
-    printNumbers();
+    //printNumbers();
 
   }
   public static void divideThree(){
@@ -54,11 +54,15 @@ public class ForTaskSolvers {
     boolean isPrime = true;
     System.out.println("Введите число: ");
     int number = scanner.nextInt();
+    if(number < 2){
+      isPrime = false;
+    }
     for (int i=2; i < number; i++) {
       if(number % i == 0){
         isPrime = false;
+        break;
       }
-      break;
+
     }
     return isPrime;
   }

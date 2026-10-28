@@ -4,7 +4,7 @@ public class LibraryTest {
   public static void main(String[] args){
     Library library = new Library();
     library.setBookTitle("Война и мир");
-    library.author = "Тостой Л.Н.";
+    library.author = "Толстой Л.Н.";
     library.year = 1863;
     library.category = "Роман";
     System.out.println("Наименование книги: " + library.getBookTitle()+". Автор книги: " +library.author +

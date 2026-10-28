@@ -58,9 +58,12 @@ public class SwitchTaskSolver {
   public static int checkCostTicket(){
     Scanner scanner= new Scanner(System.in);
     int day;
-    int cost;
+    int cost = 0;
     System.out.println("Укажите порядковый номер дня недели: ");
     day = scanner.nextInt();
+    if(day < 1 || day >7){
+      throw new IllegalArgumentException();
+    }
     switch (day) {
       case 1:
       case 2:
@@ -73,7 +76,7 @@ public class SwitchTaskSolver {
       case 7:
         cost = 450;
         break;
-      default: cost = 450;
+
         }
     return cost;
     }
@@ -125,9 +128,9 @@ public class SwitchTaskSolver {
     return description;
   }
 
-  public static int calculate(){
+  public static double calculate(){
     Scanner scanner = new Scanner(System.in);
-    int result;
+    double result;
     String operation;
     int a;
     int b;
@@ -152,7 +155,7 @@ public class SwitchTaskSolver {
         if(b == 0){
           throw new IllegalArgumentException();
         }
-        result = a / b;
+        result = (double) a / b;
         break;
       default: throw new IllegalArgumentException();
     }

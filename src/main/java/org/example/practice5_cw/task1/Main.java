@@ -1,4 +1,4 @@
-package practice5_cw.task1;
+package org.example.practice5_cw.task1;
 
 public class Main {
   public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package practice5_cw.task2;
+package org.example.practice5_cw.task2;
 
 public class Electronics extends Item{
   private final static int DEFAULT_GUARANTEE = 2;

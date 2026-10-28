@@ -5,21 +5,24 @@ import java.util.Scanner;
 public class WhileTaskSolvers {
   public static void main(String[] args) {
   // проверка метода вычисление факториала
-    //System.out.println(factorial());
+    System.out.println(factorial());
 
     // проверка метода вывода всех четных чисел до заданного
     //evenNumbers();
 
     //проверка метода обратного отсчета
-    countDown();
+    //countDown();
   }
 
   public static int factorial(){
     int result = 1;
     int i = 1;
     Scanner scanner = new Scanner(System.in);
-    System.out.println("Введите число для определения факториала: ");
+    System.out.println("Введите число для определения факториала (от 1): ");
     int number = scanner.nextInt();
+    if(number < 1) {
+      throw new IllegalArgumentException();
+    }
     while (i <= number){
       result = result * i;
       i++;
