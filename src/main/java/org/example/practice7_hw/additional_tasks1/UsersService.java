@@ -12,7 +12,7 @@ public class UsersService {
   }
 
 
-  public void searchId(int id){
+  public void searchId(int id) {
     System.out.println(idUsers.contains(id));
   }
 

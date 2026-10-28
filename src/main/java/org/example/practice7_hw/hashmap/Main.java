@@ -17,9 +17,9 @@ public class Main {
     //System.out.println(hashMap);
 
 
-  //Задача 2:
-  //Проверьте, есть ли определённое имя в HashMap.
-  Map<String, Integer> hashMap2 = new HashMap<>();
+    //Задача 2:
+    //Проверьте, есть ли определённое имя в HashMap.
+    Map<String, Integer> hashMap2 = new HashMap<>();
     hashMap2.put("Рита", 30);
     hashMap2.put("Ксения", 34);
     hashMap2.put("Алексей", 20);
@@ -27,6 +27,6 @@ public class Main {
     hashMap2.put("Алина", 44);
     System.out.println(hashMap2);
     System.out.println(hashMap2.containsKey("Рита"));
-}
+  }
 
 }

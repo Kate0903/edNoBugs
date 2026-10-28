@@ -8,16 +8,18 @@ public class TaskQueue {
   public TaskQueue(LinkedList<String> tasks) {
     this.tasks = tasks;
   }
-  public void addElement (String element){
+
+  public void addElement(String element) {
     tasks.add(element);
   }
 
-  public void processing (){
-    while (!tasks.isEmpty()){
-    System.out.println(tasks.poll());}
+  public void processing() {
+    while (!tasks.isEmpty()) {
+      System.out.println(tasks.poll());
+    }
   }
 
-  public void print(){
+  public void print() {
     System.out.println(tasks);
   }
 }

@@ -25,7 +25,7 @@ public class Main {
     tasks.add("Задача 1");
     tasks.add("Задача 2");
     tasks.add("Задача 3");
-    while(!tasks.isEmpty()){
+    while (!tasks.isEmpty()) {
       String currentTask = tasks.poll();
       //System.out.println("Задача в обработке: " + currentTask);
 
@@ -55,11 +55,11 @@ public class Main {
     list.add(3);
     ListIterator<Integer> it = list.listIterator();
     System.out.println("Проход с начала:");
-    while(it.hasNext()){
+    while (it.hasNext()) {
       System.out.println(it.next());
     }
     System.out.println("Проход с конца:");
-    while(it.hasPrevious()){
+    while (it.hasPrevious()) {
       System.out.println(it.previous());
     }
 

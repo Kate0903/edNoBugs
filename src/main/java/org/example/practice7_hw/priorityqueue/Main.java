@@ -13,7 +13,7 @@ public class Main {
     priorityQueue.offer(10);
     priorityQueue.offer(15);
     priorityQueue.offer(20);
-    while(!priorityQueue.isEmpty()){
+    while (!priorityQueue.isEmpty()) {
       System.out.println(priorityQueue.poll());
     }
     System.out.println("Элементы в очереди отсутствуют.");

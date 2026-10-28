@@ -18,7 +18,7 @@ public class Main {
     //Задача 2:
     //Добавьте в HashSet 10 чисел. Проверьте, содержит ли он заданное число.
 
-    Set<Integer> hashSetInt2 = new HashSet<>(Arrays.asList(2,3,3,4,5,22,55,65,21,34));
+    Set<Integer> hashSetInt2 = new HashSet<>(Arrays.asList(2, 3, 3, 4, 5, 22, 55, 65, 21, 34));
     //System.out.println(hashSetInt2);
     //System.out.println(hashSetInt2.contains(3));
 
@@ -31,8 +31,6 @@ public class Main {
     hashSetInt3.addAll(arrayList);
     System.out.println(hashSetInt3);
     System.out.println(arrayList);
-
-
 
 
   }
