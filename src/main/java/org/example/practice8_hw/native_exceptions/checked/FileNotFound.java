@@ -11,25 +11,23 @@ public class FileNotFound {
   // "Файл не найден".
 
   public static void main(String[] args) {
-    BufferedReader reader = null;
-    try {
-      reader = new BufferedReader(new FileReader("data.txt"));
+    try (
+            BufferedReader reader =new BufferedReader(new FileReader("data.txt"))){
       String line = null;
       while ((line = reader.readLine()) != null) {
         System.out.println(line);
       }
-    } catch (FileNotFoundException e) {
+    }
+     catch(FileNotFoundException e){
       System.err.println("Файл не найден.");
-    } catch (IOException e) {
+    } catch(IOException e){
       System.err.println("Ошибка при чтении файла: " + e.getMessage());
-    } finally {
-      if (reader != null) {
-        try {
-          reader.close();
-        } catch (IOException e) {
-          System.out.println("Ошибка при закрытии файла: " + e.getMessage());
-        }
-      }
     }
   }
 }
+
+
+
+
+
+

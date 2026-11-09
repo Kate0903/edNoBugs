@@ -13,11 +13,11 @@ public class Main {
   }
 
   public static <T extends Number> double sumOfNumbers(List<T> list) {
-    AtomicReference<Double> sum = new AtomicReference<>(0.0);
-    list.forEach(e -> {
-      sum.set(sum.get() + e.doubleValue());
-    });
-    return sum.get();
+    double sum = 0;
+    for(T e : list){
+      sum = sum + e.doubleValue();
+    }
+    return sum;
 
 
   }

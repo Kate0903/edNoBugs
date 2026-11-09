@@ -1,15 +1,16 @@
 package org.example.practice8_hw.additional_tasks.task6;
 
-public class Book implements Container {
-  private Object name;
+public class Book<T> implements Container<T> {
+  private T name;
+
 
   @Override
-  public void add(Object item) {
+  public void add(T item) {
     this.name = item;
   }
 
   @Override
-  public Object get() {
+  public T get() {
     return this.name;
   }
 }

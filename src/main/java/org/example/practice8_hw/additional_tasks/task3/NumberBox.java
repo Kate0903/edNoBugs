@@ -3,7 +3,7 @@ package org.example.practice8_hw.additional_tasks.task3;
 import java.util.List;
 
 public class NumberBox<T extends Number> {
-  private double sum;
+
   private List<T> listOfNumbers;
 
   public NumberBox(List<T> listOfNumbers) {
@@ -11,9 +11,10 @@ public class NumberBox<T extends Number> {
   }
 
   public double sumOfNumbers() {
-    listOfNumbers.forEach(e -> {
+    double sum = 0;
+    for (T e : listOfNumbers) {
       sum = sum + e.doubleValue();
-    });
+    }
     return sum;
 
   }

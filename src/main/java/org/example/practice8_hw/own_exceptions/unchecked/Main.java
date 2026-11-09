@@ -6,6 +6,7 @@ public class Main {
     User user2 = new User("test@test.com");
     User user3 = new User("user@test.com");
 
+
     try {
       user2.checkEmail();
       user1.checkEmail();
@@ -17,3 +18,4 @@ public class Main {
 
   }
 }
+

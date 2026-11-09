@@ -18,7 +18,9 @@ public class User {
   }
 
   public void checkEmail() throws InvalidEmailUserException {
-
+    if (this.email == null) {
+      throw new InvalidEmailUserException("Электронный адрес не указан (null).");
+    }
     // Создаем Matcher для конкретной строки email
     Matcher matcher = EMAIL_PATTERN.matcher(this.email);
     if (!matcher.matches()) {

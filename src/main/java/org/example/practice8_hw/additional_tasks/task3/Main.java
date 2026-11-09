@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 public class Main {
   public static void main(String[] args) {
-    NumberBox numberBox = new NumberBox(new ArrayList(Arrays.asList(1, 3, 5, 4, 50)));
+    NumberBox<Integer> numberBox = new NumberBox<>(new ArrayList<>(Arrays.asList(1, 3, 5, 4, 50)));
     System.out.println(numberBox.sumOfNumbers());
 
   }
