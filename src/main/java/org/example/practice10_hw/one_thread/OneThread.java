@@ -9,6 +9,7 @@ public class OneThread implements Runnable {
         Thread.sleep(1000);
       } catch (InterruptedException e) {
         Thread.currentThread().interrupt();
+        return;
       }
     }
   }

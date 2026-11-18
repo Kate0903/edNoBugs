@@ -35,9 +35,7 @@ public class Main {
 
     System.out.println("Кол-во всего обработанных элементов: " +
             (parallelProcessing1.getCount() + parallelProcessing2.getCount() + parallelProcessing3.getCount()));
-    System.out.println("Список 1: " + map1);
-    System.out.println("Список 2: " + map2);
-    System.out.println("Список 3: " + map3);
+
 
   }
 

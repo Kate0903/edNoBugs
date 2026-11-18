@@ -16,8 +16,8 @@ public class Main {
 
     t1.join();
     t2.join();
-    System.out.println("Пользователь: " + account1.getName() + ", балланс на счете:" + account1.getBallance());
-    System.out.println("Пользователь: " + account2.getName() + ", балланс на счете:" + account2.getBallance());
+    System.out.println("Пользователь: " + account1.getName() + ", балланс на счете:" + account1.getBalance());
+    System.out.println("Пользователь: " + account2.getName() + ", балланс на счете:" + account2.getBalance());
 
   }
 
@@ -28,7 +28,7 @@ public class Main {
           try {
             if (to.getLock().tryLock(50, TimeUnit.MILLISECONDS)) {
               try {
-                if (from.getBallance() >= amount) {
+                if (from.getBalance() >= amount) {
                   from.withdrawal(amount);
                   to.deposit(amount);
                   System.out.println(Thread.currentThread().getName() +

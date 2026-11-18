@@ -5,7 +5,7 @@ import java.util.Map;
 public class ParallelProcessing implements Runnable {
   private int sum = 0;
   private int count = 0;
-  private Map<Integer, Integer> mapInt;
+  private final Map<Integer, Integer> mapInt;
 
   public ParallelProcessing(Map<Integer, Integer> mapInt) {
     this.mapInt = mapInt;
@@ -14,6 +14,7 @@ public class ParallelProcessing implements Runnable {
   @Override
   public void run() {
     for (Map.Entry<Integer, Integer> entry : mapInt.entrySet()) {
+      System.out.println("Индекс элемета: " + entry.getKey() + ". Значение элеменнта: " + entry.getValue());
       sum += entry.getValue();
       count++;
     }

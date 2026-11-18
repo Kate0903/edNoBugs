@@ -4,17 +4,17 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class Account {
-  private double ballance;
+  private double balance;
   private final Lock lock = new ReentrantLock();
-  private String name;
+  private final String name;
 
   public Account(String name, double ballance) {
-    this.ballance = ballance;
+    this.balance = ballance;
     this.name = name;
   }
 
-  public double getBallance() {
-    return ballance;
+  public double getBalance() {
+    return balance;
   }
 
   public String getName() {
@@ -26,10 +26,10 @@ public class Account {
   }
 
   public void deposit(double amount) {
-    this.ballance = this.ballance + amount;
+    this.balance = this.balance + amount;
   }
 
   public void withdrawal(double amount) {
-    this.ballance = this.ballance - amount;
+    this.balance = this.balance - amount;
   }
 }
