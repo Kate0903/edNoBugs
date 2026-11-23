@@ -3,6 +3,7 @@ package practice11_hw;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.NullSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -31,9 +32,9 @@ public class CheckValidPasswordTest extends DifferentMathOperationsTest {
   @CsvSource({
           "pass",
           "assertion4",
-          "Carefully",
-          "null"
+          "Carefully"
   })
+  @NullSource
   @ParameterizedTest
   public void userCanIfPasswordIsNotCorrectForNotValidString(String initialPassString) {
     boolean resultCheckPass = differentMathOperations.isValidPassword(initialPassString);

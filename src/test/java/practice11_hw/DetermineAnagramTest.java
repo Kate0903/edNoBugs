@@ -25,11 +25,12 @@ public void userCanDetermineIfStringsIsAnagram(String initialString1, String ini
   boolean actualResult = differentMathOperations.isAnagram(initialString1,initialString2);
   assertTrue(actualResult);
 }
-  @CsvSource ({
+  @CsvSource (value = {
           "java, python",
           "test, set",
           "null, test"
-  })
+  }, nullValues = "null")
+
   @ParameterizedTest
   public void userCanDetermineIfStringsIsNotAnagram(String initialString1, String initialString2){
     boolean actualResult = differentMathOperations.isAnagram(initialString1,initialString2);

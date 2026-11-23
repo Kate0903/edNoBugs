@@ -1,6 +1,7 @@
 package practice11_hw;
 
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -14,15 +15,14 @@ public class CheckValidJsonTest extends DifferentMathOperationsTest {
    * negative tests:
    * "invalid json" -> false
    * corner cases:
-   * null -> true
+   * null -> false
    *
    */
 
   @ParameterizedTest
   @ValueSource(strings = {
           //  positive tests
-          "{\"key\":\"value\"}",
-          "null"
+          "{\"key\":\"value\"}"
 
   })
   public void userCanCheckValidJsonIsCorrect(String initialJson) {
@@ -31,6 +31,7 @@ public class CheckValidJsonTest extends DifferentMathOperationsTest {
   }
 
   @ParameterizedTest
+  @NullSource
   @ValueSource(strings = {
           //  positive tests
           "invalid json",
