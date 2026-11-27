@@ -16,24 +16,24 @@ import static org.junit.jupiter.api.Assertions.*;
  * Корнер:
  * Добавление элемента с идентичными свойствами
  * Добавление null элемента
- *
+ * <p>
  * Проверки по удалению элемента:
  * Удалить существующий элемент в списке
  * Удалить последовательно несколько элементов
  * Корнер:
  * Удалить элемента, которого нет в списке
  * Попробовать удалить, если список пуст
- *
+ * <p>
  * Проверки на получение всех элементов(копия списка):
  * Добавить 1 элемент, после создать копию, добавить еще 1 элемент и проверить, что в копии его нет
  * Добавить 2 элемента, удалить один, снять копию, удалить второй элемент и убедиться, что в копии один элемент есть.
- *
+ * <p>
  * Проверка фильтрации по возрасту:
  * Проверка большого диапазона, куда будут входить, все созданные объекты
  * Проверка левой границы(возраст включается в фильтр)
  * Проверка правой границы(возраст включается в фильтр)
  * Проверка преграниц
- *
+ * <p>
  * Проверка фильтрации по имени:
  * Данное имя есть в списке (1 упоминание)
  * Данное имя есть в списке (несколько упоминаний)
@@ -42,7 +42,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * Список изначально пуст
  * Передать в фильтр null
  * Передать в фильтр ""
- *
+ * <p>
  * Проверка фильтрации по активности:
  * Отфильтровать только активных пользователей
  * Отфильтровать только неактивных пользователей
@@ -54,27 +54,28 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class EntityManagerTest {
   //Тесты на добавление
-@Test
-  public void userCanAddEntityInEmptyList(){
-  Employee employee = new Employee("Кирилл", 25, true);
-  Employee expectEmployee = new Employee("Кирилл", 25, true);
-  EntityManager<Employee> entityManager = new EntityManager<>();
+  @Test
+  public void userCanAddEntityInEmptyList() {
+    Employee employee = new Employee("Кирилл", 25, true);
+    Employee expectEmployee = new Employee("Кирилл", 25, true);
+    EntityManager<Employee> entityManager = new EntityManager<>();
 
     entityManager.add(employee);
 
-  Employee actualEmployee = entityManager.getAll().getFirst();
-  assertAll(
-          () -> assertTrue(entityManager.getAll().contains(employee)),
-          () -> assertEquals(expectEmployee, actualEmployee),
-          () -> assertEquals(expectEmployee.getName(), entityManager.getAll().getFirst().getName()),
-          () -> assertEquals(expectEmployee.getAge(), entityManager.getAll().getFirst().getAge()),
-          () -> assertEquals(expectEmployee.isActive(), entityManager.getAll().getFirst().isActive()),
-          () ->  assertEquals(1,entityManager.getAll().size())
+    Employee actualEmployee = entityManager.getAll().getFirst();
+    assertAll(
+            () -> assertTrue(entityManager.getAll().contains(employee)),
+            () -> assertEquals(expectEmployee, actualEmployee),
+            () -> assertEquals(expectEmployee.getName(), entityManager.getAll().getFirst().getName()),
+            () -> assertEquals(expectEmployee.getAge(), entityManager.getAll().getFirst().getAge()),
+            () -> assertEquals(expectEmployee.isActive(), entityManager.getAll().getFirst().isActive()),
+            () -> assertEquals(1, entityManager.getAll().size())
 
-  );
+    );
   }
+
   @Test
-  public void userCanAddMoreOneEntityInList(){
+  public void userCanAddMoreOneEntityInList() {
     Employee employee1 = new Employee("Кирилл", 25, true);
     Employee employee2 = new Employee("Егор", 35, false);
     Employee employee3 = new Employee("Евгений", 30, true);
@@ -85,10 +86,11 @@ public class EntityManagerTest {
     entityManager.add(employee2);
     entityManager.add(employee3);
 
-      assertEquals(3,entityManager.getAll().size());
+    assertEquals(3, entityManager.getAll().size());
   }
+
   @Test
-  public void userCanAddEqualEntitysInList(){
+  public void userCanAddEqualEntitysInList() {
     Employee employee1 = new Employee("Кирилл", 25, true);
     Employee employee2 = new Employee("Кирилл", 25, true);
 
@@ -98,21 +100,21 @@ public class EntityManagerTest {
     entityManager.add(employee1);
     entityManager.add(employee2);
 
-    assertEquals(2,entityManager.getAll().size());
+    assertEquals(2, entityManager.getAll().size());
   }
+
   @Test
-  public void userCanNotNullEntityInList(){
+  public void userCanNotNullEntityInList() {
     EntityManager<Employee> entityManager = new EntityManager<>();
     assertThrows(NullPointerException.class, () -> {
-      entityManager.add(null);}, "Add null entity should lead to NullPointerException");
+      entityManager.add(null);
+    }, "Add null entity should lead to NullPointerException");
   }
-
-
 
 
   //Тесты на удаление
   @Test
-  public void userCanRemoveEntityFromList(){
+  public void userCanRemoveEntityFromList() {
     Employee employee = new Employee("Кирилл", 25, true);
 
     EntityManager<Employee> entityManager = new EntityManager<>();
@@ -127,7 +129,7 @@ public class EntityManagerTest {
   }
 
   @Test
-  public void userCanRemoveMoreOneEntitysFromList(){
+  public void userCanRemoveMoreOneEntitysFromList() {
     Employee employee1 = new Employee("Кирилл", 25, true);
     Employee employee2 = new Employee("Аркадий", 48, true);
     Employee employee3 = new Employee("Петя", 34, false);
@@ -140,7 +142,6 @@ public class EntityManagerTest {
     entityManager.add(employee3);
 
 
-
     assertAll(
             () -> assertTrue(entityManager.remove(employee1)),
             () -> assertTrue(entityManager.remove(employee3)));
@@ -148,8 +149,9 @@ public class EntityManagerTest {
     assertAll(() -> assertEquals(1, entityManager.getAll().size()),
             () -> assertEquals(expectEmployee, actualEmployee));
   }
+
   @Test
-  public void userCanNotRemoveNotExistEntityFromList(){
+  public void userCanNotRemoveNotExistEntityFromList() {
     Employee employee1 = new Employee("Кирилл", 25, true);
     Employee employee2 = new Employee("Роберт", 65, true);
 
@@ -159,15 +161,14 @@ public class EntityManagerTest {
     entityManager.add(employee1);
 
 
-
     assertAll(
-            () -> assertFalse (entityManager.remove(employee2)),
+            () -> assertFalse(entityManager.remove(employee2)),
             () -> assertEquals(1, entityManager.getAll().size()));
 
   }
 
   @Test
-  public void userCanNotRemoveEntityFromEmptyList(){
+  public void userCanNotRemoveEntityFromEmptyList() {
     Employee employee1 = new Employee("Кирилл", 25, true);
 
 
@@ -178,14 +179,14 @@ public class EntityManagerTest {
 
 
     assertAll(
-            () -> assertFalse (entityManager.remove(employee1)),
+            () -> assertFalse(entityManager.remove(employee1)),
             () -> assertEquals(0, entityManager.getAll().size()));
 
   }
 
   //Тесты на получение всех элементов(копия списка):
   @Test
-  public void userCanNotAddEntityIntoCopyList(){
+  public void userCanNotAddEntityIntoCopyList() {
     Employee employee1 = new Employee("Василий", 44, true);
     Employee employee2 = new Employee("Денис", 56, true);
     Employee expectEmployee = new Employee("Василий", 44, true);
@@ -201,8 +202,9 @@ public class EntityManagerTest {
             () -> assertEquals(expectEmployee, copyEntityManager.getFirst())
     );
   }
+
   @Test
-  public void userCanNotRemoveEntityFromCopyList(){
+  public void userCanNotRemoveEntityFromCopyList() {
     Employee employee1 = new Employee("Василий", 44, true);
     Employee employee2 = new Employee("Денис", 56, true);
     Employee expectEmployee = new Employee("Василий", 44, true);
@@ -222,7 +224,7 @@ public class EntityManagerTest {
 
   //Тесты на проверку фильтрации по возрасту
   @Test
-  public void userCanFilterEntitysByAge(){
+  public void userCanFilterEntitysByAge() {
     Employee employee1 = new Employee("Петр", 15, true);
     Employee employee2 = new Employee("Василий", 20, true);
     Employee employee3 = new Employee("Ирина", 45, true);
@@ -234,13 +236,14 @@ public class EntityManagerTest {
     entityManager.add(employee2);
     entityManager.add(employee3);
     entityManager.add(employee4);
-    List<Employee> actualFilterList = entityManager.filterByAge(10,70);
+    List<Employee> actualFilterList = entityManager.filterByAge(10, 70);
 
-    assertEquals(4,actualFilterList.size());
+    assertEquals(4, actualFilterList.size());
 
   }
+
   @Test
-  public void userCanFilterEntitysByAgeWithLeftBaund(){
+  public void userCanFilterEntitysByAgeWithLeftBaund() {
     Employee employee1 = new Employee("Петр", 15, true);
     Employee employee2 = new Employee("Василий", 20, true);
     Employee employee3 = new Employee("Ирина", 45, true);
@@ -253,14 +256,15 @@ public class EntityManagerTest {
     entityManager.add(employee2);
     entityManager.add(employee3);
     entityManager.add(employee4);
-    List<Employee> actualFilterList = entityManager.filterByAge(15,17);
+    List<Employee> actualFilterList = entityManager.filterByAge(15, 17);
 
     assertAll(
-            () -> assertEquals(1,actualFilterList.size()),
-            () -> assertEquals(expectEmployee,actualFilterList.getFirst()));
+            () -> assertEquals(1, actualFilterList.size()),
+            () -> assertEquals(expectEmployee, actualFilterList.getFirst()));
   }
+
   @Test
-  public void userCanFilterEntitysByAgeWithRightBaund(){
+  public void userCanFilterEntitysByAgeWithRightBaund() {
     Employee employee1 = new Employee("Петр", 15, true);
     Employee employee2 = new Employee("Василий", 20, true);
     Employee employee3 = new Employee("Ирина", 45, true);
@@ -273,14 +277,15 @@ public class EntityManagerTest {
     entityManager.add(employee2);
     entityManager.add(employee3);
     entityManager.add(employee4);
-    List<Employee> actualFilterList = entityManager.filterByAge(18,20);
+    List<Employee> actualFilterList = entityManager.filterByAge(18, 20);
 
     assertAll(
-            () -> assertEquals(1,actualFilterList.size()),
-            () -> assertEquals(expectEmployee,actualFilterList.getFirst()));
+            () -> assertEquals(1, actualFilterList.size()),
+            () -> assertEquals(expectEmployee, actualFilterList.getFirst()));
   }
+
   @Test
-  public void userCanGetEmptyListAfterFilterByAge(){
+  public void userCanGetEmptyListAfterFilterByAge() {
     Employee employee1 = new Employee("Петр", 15, true);
     Employee employee2 = new Employee("Василий", 20, true);
     Employee employee3 = new Employee("Ирина", 45, true);
@@ -293,9 +298,10 @@ public class EntityManagerTest {
     entityManager.add(employee2);
     entityManager.add(employee3);
     entityManager.add(employee4);
-    List<Employee> actualFilterList = entityManager.filterByAge(21,44);
-    assertEquals(0,actualFilterList.size());
+    List<Employee> actualFilterList = entityManager.filterByAge(21, 44);
+    assertEquals(0, actualFilterList.size());
   }
+
   //Тесты на фильтрацию по имени:
   @Test
   public void userCanFilterMoreOneEntitysByName() {
@@ -321,29 +327,30 @@ public class EntityManagerTest {
     );
   }
 
-    @Test
-    public void userCanFilterOneEntityByName(){
-      Employee employee1 = new Employee("Петр", 15, true);
-      Employee employee2 = new Employee("Василий", 20, true);
-      Employee employee3 = new Employee("Ирина", 45, true);
+  @Test
+  public void userCanFilterOneEntityByName() {
+    Employee employee1 = new Employee("Петр", 15, true);
+    Employee employee2 = new Employee("Василий", 20, true);
+    Employee employee3 = new Employee("Ирина", 45, true);
 
 
-      EntityManager<Employee> entityManager = new EntityManager<>();
+    EntityManager<Employee> entityManager = new EntityManager<>();
 
-      entityManager.add(employee1);
-      entityManager.add(employee2);
-      entityManager.add(employee3);
+    entityManager.add(employee1);
+    entityManager.add(employee2);
+    entityManager.add(employee3);
 
-      List<Employee> actualFilterList = entityManager.filterByName("Василий");
-      assertAll(
-              () -> assertEquals(1,actualFilterList.size()),
-              () -> assertEquals("Василий",actualFilterList.getFirst().getName())
+    List<Employee> actualFilterList = entityManager.filterByName("Василий");
+    assertAll(
+            () -> assertEquals(1, actualFilterList.size()),
+            () -> assertEquals("Василий", actualFilterList.getFirst().getName())
 
-      );
+    );
 
   }
+
   @Test
-  public void userCanGetEmptyListAfterFilterByName(){
+  public void userCanGetEmptyListAfterFilterByName() {
     Employee employee1 = new Employee("Петр", 15, true);
     Employee employee2 = new Employee("Василий", 20, true);
     Employee employee3 = new Employee("Ирина", 45, true);
@@ -356,17 +363,19 @@ public class EntityManagerTest {
     entityManager.add(employee3);
 
     List<Employee> actualFilterList = entityManager.filterByName("Сергей");
-    assertEquals(0,actualFilterList.size());
+    assertEquals(0, actualFilterList.size());
 
   }
+
   @Test
-  public void userCanNotFilterByNameEmptyList(){
-   EntityManager<Employee> entityManager = new EntityManager<>();
+  public void userCanNotFilterByNameEmptyList() {
+    EntityManager<Employee> entityManager = new EntityManager<>();
     List<Employee> actualFilterList = entityManager.filterByName("Сергей");
-    assertEquals(0,actualFilterList.size());
+    assertEquals(0, actualFilterList.size());
   }
+
   @Test
-  public void userCanGetEmptyListAfterFilterByNullName(){
+  public void userCanGetEmptyListAfterFilterByNullName() {
     Employee employee1 = new Employee("Петр", 15, true);
     Employee employee2 = new Employee("Василий", 20, true);
     Employee employee3 = new Employee("Ирина", 45, true);
@@ -379,11 +388,11 @@ public class EntityManagerTest {
     entityManager.add(employee3);
 
     List<Employee> actualFilterList = entityManager.filterByName(null);
-    assertEquals(0,actualFilterList.size());
+    assertEquals(0, actualFilterList.size());
   }
 
   @Test
-  public void userCanGetEmptyListAfterFilterByEmptyName(){
+  public void userCanGetEmptyListAfterFilterByEmptyName() {
     Employee employee1 = new Employee("Петр", 15, true);
     Employee employee2 = new Employee("Василий", 20, true);
     Employee employee3 = new Employee("Ирина", 45, true);
@@ -396,10 +405,11 @@ public class EntityManagerTest {
     entityManager.add(employee3);
 
     List<Employee> actualFilterList = entityManager.filterByName("");
-    assertEquals(0,actualFilterList.size());
+    assertEquals(0, actualFilterList.size());
   }
+
   @Test
-  public void userCanFilterByIsActiveTrue(){
+  public void userCanFilterByIsActiveTrue() {
     Employee employee1 = new Employee("Петр", 15, true);
     Employee employee2 = new Employee("Василий", 20, false);
     Employee employee3 = new Employee("Ирина", 45, true);
@@ -413,14 +423,15 @@ public class EntityManagerTest {
 
     List<Employee> actualFilterList = entityManager.filterByActive(true);
     assertAll(
-            () -> assertEquals(2,actualFilterList.size()),
+            () -> assertEquals(2, actualFilterList.size()),
             () -> assertTrue(actualFilterList.getFirst().isActive()),
             () -> assertTrue(actualFilterList.get(1).isActive())
     );
 
   }
+
   @Test
-  public void userCanFilterByIsActiveFalse(){
+  public void userCanFilterByIsActiveFalse() {
     Employee employee1 = new Employee("Петр", 15, true);
     Employee employee2 = new Employee("Василий", 20, false);
     Employee employee3 = new Employee("Ирина", 45, true);
@@ -434,21 +445,23 @@ public class EntityManagerTest {
 
     List<Employee> actualFilterList = entityManager.filterByActive(false);
     assertAll(
-            () -> assertEquals(1,actualFilterList.size()),
+            () -> assertEquals(1, actualFilterList.size()),
             () -> assertFalse(actualFilterList.getFirst().isActive())
 
     );
 
   }
+
   @Test
-  public void userCanFilterByIsActiveNullList(){
+  public void userCanFilterByIsActiveNullList() {
     EntityManager<Employee> entityManager = new EntityManager<>();
     List<Employee> actualFilterList = entityManager.filterByActive(true);
 
-    assertEquals(0,actualFilterList.size());
+    assertEquals(0, actualFilterList.size());
   }
+
   @Test
-  public void userCanFilterByIsActiveFalseForListJustTrue(){
+  public void userCanFilterByIsActiveFalseForListJustTrue() {
     Employee employee1 = new Employee("Петр", 15, true);
     Employee employee2 = new Employee("Василий", 20, true);
     Employee employee3 = new Employee("Ирина", 45, true);
@@ -461,7 +474,7 @@ public class EntityManagerTest {
     entityManager.add(employee3);
 
     List<Employee> actualFilterList = entityManager.filterByActive(false);
-    assertEquals(0,actualFilterList.size());
+    assertEquals(0, actualFilterList.size());
   }
 
 

@@ -14,11 +14,12 @@ public class UserValidator {
   public UserValidator(GlobalFlagValidate flagValidate) {
     this.flagValidate = flagValidate.isValidationEnabled();
   }
-  public void userValidate(User user){
-    if(user == null){
+
+  public void userValidate(User user) {
+    if (user == null) {
       throw new InvalidUserException("Значение объекта не может быть null.");
     }
-    if(!flagValidate){
+    if (!flagValidate) {
       return;
     }
     nameValidate(user.getName());
@@ -26,30 +27,30 @@ public class UserValidator {
     emailValidate(user.getEmail());
   }
 
-  public void nameValidate(String name){
-    if(name == null || name.isEmpty()) {
-       throw new InvalidUserException("Имя пользователя не может быть null или пустым.");
+  private void nameValidate(String name) {
+    if (name == null || name.isEmpty()) {
+      throw new InvalidUserException("Имя пользователя не может быть null или пустым.");
     }
-    if (!Character.isUpperCase(name.charAt(0))){
+    if (!Character.isUpperCase(name.charAt(0))) {
       throw new InvalidUserException("Имя пользователя должно быть указано с заглавной буквы.");
     }
   }
-  public void AgeValidate(int age){
-    if (age < 18 || age > 100){
+
+  private void AgeValidate(int age) {
+    if (age < 18 || age > 100) {
       throw new InvalidUserException("Возраст пользователя должен быть от 18 до 100 включительно.");
     }
   }
-    public void emailValidate(String email){
-      if (email == null) {
-        throw new InvalidUserException("Email пользователя не должен быть равен null.");
-      }
-      if(!EMAIL_PATTERN.matcher(email.trim()).matches()){
-        throw new InvalidUserException("Email пользователя указан неверно.");
-      }
+
+  private void emailValidate(String email) {
+    if (email == null) {
+      throw new InvalidUserException("Email пользователя не должен быть равен null.");
+    }
+    if (!EMAIL_PATTERN.matcher(email.trim()).matches()) {
+      throw new InvalidUserException("Email пользователя указан неверно.");
+    }
 
   }
-
-
 
 
 }

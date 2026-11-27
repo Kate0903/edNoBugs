@@ -7,6 +7,7 @@ import org.example.practice13.validator_of_user.UserValidator;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -16,15 +17,15 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
  * Тесты на проверку глобального флага:
  * Глобальный флаг true, на вход передаем корректно юзера, который проходит все валидации
  * Глобальный флаг false - проверяем, что валидация не осуществляется
- *
- *  Тесты на проверку валидации имени:
+ * <p>
+ * Тесты на проверку валидации имени:
  * Положительный кейс проверен в п.1 при проверке флага
  * Имя из двух слов
  * Имя начинается со строчной буквы
  * Заглавная буква вторая, а не первая
  * Проверка, когда имя пустое
  * Проверка, когда имя null
- *
+ * <p>
  * Тесты на проверку валидации возраста:
  * Положительный кейс проверен в п.1 при проверке флага
  * Возраст 18
@@ -33,15 +34,15 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
  * Возраст 101
  * Возраст 0
  * Возраст -1
- *
+ * <p>
  * Тесты на проверку email:
- *Положительный кейс проверен в п.1 при проверке флага
+ * Положительный кейс проверен в п.1 при проверке флага
  * Нетривиальный положительный кейс: noreply@eastLink.ca
  * b@t.cc
  * bad@.com
  * no-at-symbol
- * @test.com
- * check@gmail
+ *
+ * @test.com check@gmail
  * null
  * ""
  */
@@ -77,21 +78,20 @@ public class UserValidatorTest {
   }
 
   @ValueSource(strings = {
-    "галя",
-    "гАля",
-    "",
-    "null"
+          "галя",
+          "гАля",
+          ""
   })
+  @NullSource
   @ParameterizedTest
   public void userCanGetExceptionWithInvalideName(String name) {
     GlobalFlagValidate globalFlagValidate = new GlobalFlagValidate(true);
     User user = new User(name, 45, "user@user.com");
     UserValidator userValidator = new UserValidator(globalFlagValidate);
-    assertThrows(InvalidUserException.class, () -> {userValidator.userValidate(user);
+    assertThrows(InvalidUserException.class, () -> {
+      userValidator.userValidate(user);
     }, "Try valid name with invalid name user should lead to InvalidUserException");
   }
-
-
 
 
   //Тесты на проверку возраста
@@ -118,9 +118,11 @@ public class UserValidatorTest {
     GlobalFlagValidate globalFlagValidate = new GlobalFlagValidate(true);
     User user = new User("Ирина", age, "user@user.com");
     UserValidator userValidator = new UserValidator(globalFlagValidate);
-    assertThrows(InvalidUserException.class, () -> {userValidator.userValidate(user);
+    assertThrows(InvalidUserException.class, () -> {
+      userValidator.userValidate(user);
     }, "Try valid age with bounds and near bounds value should lead to InvalidUserException");
   }
+
   //Тесты на проверку email
   @ValueSource(strings = {
           "noreply@eastLink.ca",
@@ -133,25 +135,26 @@ public class UserValidatorTest {
     UserValidator userValidator = new UserValidator(globalFlagValidate);
     assertDoesNotThrow(() -> userValidator.userValidate(user));
   }
+
   @ValueSource(strings = {
           "bad@.com",
           "no-at-symbol",
           "@test.com",
           "check@gmail",
-          "null",
           ""
 
   })
+  @NullSource
   @ParameterizedTest
 
   public void userCanGetExceptionWithNotValidEmail(String email) {
     GlobalFlagValidate globalFlagValidate = new GlobalFlagValidate(true);
     User user = new User("Ирина", 24, email);
     UserValidator userValidator = new UserValidator(globalFlagValidate);
-    assertThrows(InvalidUserException.class, () -> {userValidator.userValidate(user);
+    assertThrows(InvalidUserException.class, () -> {
+      userValidator.userValidate(user);
     }, "Try valid wrong email should lead to InvalidUserException");
   }
-
 
 
 }
